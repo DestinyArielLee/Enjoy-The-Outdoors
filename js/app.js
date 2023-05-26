@@ -45,7 +45,7 @@ for (let i = 0; i < nationalParksArray.length; i++) {
   const park = nationalParksArray[i];
   const phoneNumber = park.Phone === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Phone: ${park.Phone}</h6>`;
   const faxNumber = park.Fax === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Fax: ${park.Fax}</h6>`;
-  const visitSite = park.Visit === 0 ? "" : '<h6 class="card-subtitle mb-2 text-body-secondary">For more information,<br><a href="${park.Visit}"> visit their website!</a></h6>';
+  const visitSite = park.Visit === 0 ? "" : '<h6 class="card-subtitle mb-2 text-body-secondary">For more information,<br><a href=${park.Visit}> visit their website!</a></h6>';
 
   if (park.State == selectedLocation) {
   const parkInfo = 
