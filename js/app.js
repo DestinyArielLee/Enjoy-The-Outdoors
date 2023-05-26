@@ -7,6 +7,7 @@ const typeBtn = document.getElementById("typeBtn")
 const searchType = document.getElementById("searchType")
 
 searchState.style.display = "block";
+searchLocation()
 
 locationBtn.onclick = () => {
 searchState.style.display = "block";
