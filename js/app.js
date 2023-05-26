@@ -6,6 +6,8 @@ const searchState = document.getElementById("searchState");
 const typeBtn = document.getElementById("typeBtn")
 const searchType = document.getElementById("searchType")
 
+searchState.style.display = "block";
+
 locationBtn.onclick = () => {
 searchState.style.display = "block";
 searchType.style.display = "none";
@@ -20,41 +22,6 @@ searchState.style.display = "none";
 searchParkType()
 }
 }
-
-
-function searchParkType() {
-const parkTypeDropdown = document.getElementById("parkTypeDropdown");
-const parkDisplay2 = document.getElementById("parkDisplay2");
-const parkSubmitBtn = document.getElementById("parkSubmitBtn");
-
-
-for (const parkType of parkTypesArray) {
-const option = new Option(parkType, parkType);
-parkTypeDropdown.add(option);
-}
-
-parkSubmitBtn.onclick = () => {
-
-parkDisplay2.textContent = "";
-
-for (let i = 0; i < nationalParksArray.length; i++) {
-  const park = nationalParksArray[i]
-  const phoneNumber = park.Phone === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Phone: ${park.Phone}</h6>`;
-  const faxNumber = park.Fax === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Fax: ${park.Fax}</h6>`;
-  
-if (park.LocationName.includes(parkTypeDropdown.value)) {
-  const parkInfo = 
-  `<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${park.LocationName}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Address: ${park.Address} ${park.City}, ${park.State} ${park.ZipCode}</h6>
-    ${phoneNumber}
-    ${faxNumber}
-  </div>
-</div>`;
-parkDisplay2.innerHTML += parkInfo;
-}}
-}}
 
 function searchLocation() {
 const locationDropdown = document.getElementById("locationDropdown");
@@ -77,6 +44,7 @@ for (let i = 0; i < nationalParksArray.length; i++) {
   const park = nationalParksArray[i];
   const phoneNumber = park.Phone === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Phone: ${park.Phone}</h6>`;
   const faxNumber = park.Fax === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Fax: ${park.Fax}</h6>`;
+  const visitSite = park.Visit === 0 ? "" : '<h6 class="card-subtitle mb-2 text-body-secondary">For more information,<br><a href="${park.Visit}"> visit their website!</a></h6>';
 
   if (park.State == selectedLocation) {
   const parkInfo = 
@@ -86,8 +54,45 @@ for (let i = 0; i < nationalParksArray.length; i++) {
     <h6 class="card-subtitle mb-2 text-body-secondary">Address: ${park.Address} ${park.City}, ${park.State} ${park.ZipCode}</h6>
     ${phoneNumber}
     ${faxNumber}
+    ${visitSite}
   </div>
 </div>`;
 parkDisplay1.innerHTML += parkInfo;
+}}
+}}
+
+function searchParkType() {
+const parkTypeDropdown = document.getElementById("parkTypeDropdown");
+const parkDisplay2 = document.getElementById("parkDisplay2");
+const parkSubmitBtn = document.getElementById("parkSubmitBtn");
+
+
+for (const parkType of parkTypesArray) {
+const option = new Option(parkType, parkType);
+parkTypeDropdown.add(option);
+}
+
+parkSubmitBtn.onclick = () => {
+
+parkDisplay2.textContent = "";
+
+for (let i = 0; i < nationalParksArray.length; i++) {
+  const park = nationalParksArray[i]
+  const phoneNumber = park.Phone === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Phone: ${park.Phone}</h6>`;
+  const faxNumber = park.Fax === 0 ? "" : `<h6 class="card-subtitle mb-2 text-body-secondary">Fax: ${park.Fax}</h6>`;
+  const visitSite = park.Visit === 0 ? "" : '<h6 class="card-subtitle mb-2 text-body-secondary">For more information,<br><a href="${park.Visit}"> visit their website!</a></h6>';
+
+if (park.LocationName.includes(parkTypeDropdown.value)) {
+  const parkInfo = 
+  `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${park.LocationName}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Address: ${park.Address} ${park.City}, ${park.State} ${park.ZipCode}</h6>
+    ${phoneNumber}
+    ${faxNumber}
+    ${visitSite}
+  </div>
+</div>`;
+parkDisplay2.innerHTML += parkInfo;
 }}
 }}

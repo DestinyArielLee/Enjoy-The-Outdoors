@@ -36,6 +36,7 @@ if (selectedMtn == mtn.name) {
           <h5 class="card-title">${mtn.name}</h5>
           <p class="card-text">${mtn.desc}</p>
           <p class="card-text"><small class="text-body-secondary">Elevation: ${mtn.elevation}</small></p>
+          <p class="card-text"><small class="text-body-secondary">Latitude: ${mtn.coords.lat}   Longitude: ${mtn.coords.lng}</small></p>
         </div>
       </div>
     </div>
